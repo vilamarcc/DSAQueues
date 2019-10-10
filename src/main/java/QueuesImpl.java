@@ -15,7 +15,7 @@ public class QueuesImpl<E> implements Queue <E> {
       if (this.isFull()) {
         throw new QueueFullException();
       }
-      else data[p++] = e;
+      else data[p++] = e; //primer s'afegeix a p i despres es fa p++
 
   //    log.info("p: "+p);
     }
@@ -35,6 +35,12 @@ public class QueuesImpl<E> implements Queue <E> {
 //        log.info("sortida: "+res);
 
         return res;
+    }
+
+    private void lshift(E[] data) {
+        for (int i=0; i<data.length;i++){
+            data[i]=data[i+1];
+        }
     }
 
     private boolean isEmpty() {
