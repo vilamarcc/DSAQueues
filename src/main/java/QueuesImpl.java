@@ -41,7 +41,7 @@ public class QueuesImpl<E> implements Queue <E> {
 
     public int size() {
         int fi=0;
-        for(int i=0; i<this.data;i++){
+        for(int i = 0; this.data.length> i; i++){
             if(this.data[i] == null){
                 fi = i;
             }
