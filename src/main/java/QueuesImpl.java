@@ -2,7 +2,7 @@
 public class QueuesImpl<E> implements Queue <E> {
 
     E[] data;
-    int p;
+    int p = 0;
 
     public QueuesImpl(int len) {
         this.data = (E[])new Object[len];
@@ -13,40 +13,51 @@ public class QueuesImpl<E> implements Queue <E> {
       if (this.isFull()) {
         throw new QueueFullException();
       }
-      else data[p++] = e; //primer s'afegeix a p i despres es fa p++
-  //    log.info("p: "+p);
+      else {
+          data[p] = e; //primer s'afegeix a p i despres es fa p++
+          this.p = this.p + 1;
+      }
+
+        //log.info("p: "+p);
     }
 
     private boolean isFull() {
-        return (this.data.length>=p);
+        return (this.data.length<=p);
     }
 
     public E pull() throws QueueEmptyException{
-        if (this.isEmpty()) { throw new QueueEmptyException(); }
+        if (this.isEmpty() == true) { throw new QueueEmptyException(); }
         E res =  this.data[0];
         lshift(data);
+        this.p = this.p - 1;
 //        log.info("sortida: "+res);
         return res;
     }
 
     private void lshift(E[] data) {
-        for (int i=0; i<data.length;i++){
-            data[i]=data[i+1];
+        for (int i=1; i<data.length;i++){
+            data[i-1]=data[i];
         }
     }
 
     private boolean isEmpty() {
-        return (this.p == 0);
+        if (this.p == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 
     public int size() {
-        int fi=0;
+        int units=0;
         for(int i = 0; this.data.length> i; i++){
-            if(this.data[i] == null){
-                fi = i;
+            if(this.data[i] != null){
+                units++;
             }
         }
-        return fi;
+        return units;
     }
 }
 
