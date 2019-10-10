@@ -1,4 +1,3 @@
-import java.util.HashMap;
 
 public class QueuesImpl<E> implements Queue <E> {
 
@@ -10,30 +9,23 @@ public class QueuesImpl<E> implements Queue <E> {
     }
 
     public void push(E e) throws QueueFullException {
-    //  log.info("entrada: "+e);
-
+      //log.info("entrada: "+e);
       if (this.isFull()) {
         throw new QueueFullException();
       }
       else data[p++] = e; //primer s'afegeix a p i despres es fa p++
-
   //    log.info("p: "+p);
     }
 
     private boolean isFull() {
-        //this.data.length
-        return false;
+        return (this.data.length>=p);
     }
 
     public E pull() {
         if (this.isEmpty()) throw new QueueEmptyException()
         E res =  this.data[0];
-
         lshift(data);
-
-
 //        log.info("sortida: "+res);
-
         return res;
     }
 
@@ -48,11 +40,14 @@ public class QueuesImpl<E> implements Queue <E> {
     }
 
     public int size() {
-        return 0;
+        int fi=0;
+        for(int i=0; i<this.data;i++){
+            if(this.data[i] == null){
+                fi = i;
+            }
+        }
+        return fi;
     }
-
-
-
 }
 
 
