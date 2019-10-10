@@ -1,13 +1,54 @@
 import java.util.HashMap;
 
+public class QueuesImpl<E> implements Queue <E> {
 
+    E[] data;
+    int p;
 
-abstract class QueueImpl implements Queue{
-    public static void main() {
-        HashMap<String, String> user = new HashMap<String, String>();
-        user.put("39935783D", "Marina");
-        user.put("1234567", "J");
-        //  user.u = users.get("39935783D");
-        System.out.println(user);
+    public QueuesImpl(int len) {
+        this.data = (E[])new Object[len];
     }
+
+    public void push(E e) throws QueueFullException {
+    //  log.info("entrada: "+e);
+
+      if (this.isFull()) {
+        throw new QueueFullException();
+      }
+      else data[p++] = e;
+
+  //    log.info("p: "+p);
+    }
+
+    private boolean isFull() {
+        //this.data.length
+        return false;
+    }
+
+    public E pull() {
+        if (this.isEmpty()) throw new QueueEmptyException()
+        E res =  this.data[0];
+
+        lshift(data);
+
+
+//        log.info("sortida: "+res);
+
+        return res;
+    }
+
+    private boolean isEmpty() {
+        return (this.p == 0);
+    }
+
+    public int size() {
+        return 0;
+    }
+
+
+
 }
+
+
+
+

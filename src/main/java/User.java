@@ -14,5 +14,4 @@ public class User {
     public void setName (String name) {this.name=name;}
     public void setDNI (String DNI) {this.DNI=DNI;}
     // public void setFollowers (double foll) {this.followers=foll;}
-
 }

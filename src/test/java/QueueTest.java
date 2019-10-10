@@ -15,11 +15,15 @@ public abstract class QueueTest implements  Queue{
         array[3] = new Users("Marina","32543187H",7);
         array[4] = new Users("Laura","12345678P",8);
         array[5] = new Users("Toni","87654321D",9);
-        Queue Cola = new Queue<Users>;
+        Queue cola = new QueuesImpl<Users>(7);
 
         for (int i = 0; i < 5;i++) {
 
-            Cola.add(array[i]);
+            try {
+                cola.push(array[i]);
+            } catch (QueueFullException e) {
+                e.printStackTrace();
+            }
         }
 
 }
@@ -35,6 +39,29 @@ public abstract class QueueTest implements  Queue{
         String dni = Cola.pop().getDNI();
         Assert.assertEquals("Push", "76543231N",dni);
     }
+
+    @Test(expected = QueueFullException.class)
+    public void testColaIntegersFullException() throws Exception {
+
+        Queue<Integer> qInt = new QueuesImpl<Integer>(3);
+        qInt.push(5);
+        qInt.push(5);
+        qInt.push(5);
+        qInt.push(5);
+    }
+
+    @Test
+    public void testColaString() {
+        String nombre = Cola.pop().getName();
+        Assert.assertEquals("Pop","Toni",nombre);
+        int s = Cola.size();
+        Assert.assertEquals("Size", 6, s, 0.5);
+        Users prueba = new Users("Jorge","76543231N",8);
+        Cola.push(prueba);
+        String dni = Cola.pop().getDNI();
+        Assert.assertEquals("Push", "76543231N",dni);
+    }
+
 
     @Test
     public void testException() {
