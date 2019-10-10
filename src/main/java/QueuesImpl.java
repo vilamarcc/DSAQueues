@@ -21,8 +21,8 @@ public class QueuesImpl<E> implements Queue <E> {
         return (this.data.length>=p);
     }
 
-    public E pull() {
-        if (this.isEmpty()) throw new QueueEmptyException()
+    public E pull() throws QueueEmptyException{
+        if (this.isEmpty()) { throw new QueueEmptyException(); }
         E res =  this.data[0];
         lshift(data);
 //        log.info("sortida: "+res);
