@@ -1,7 +1,5 @@
-import java.util.Collection;
-
-public interface Queue<E> extends Collection {
-    E pop (E e);
-    int size(E e);
-    void push(E e);
+public interface Queue<E> {
+    public void push (E e);
+    public void pull (E e);
+    public double size(E e);
 }
